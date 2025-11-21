@@ -4,11 +4,11 @@
 
 /* --- Reset básico y variables --- */
 :root {
-  --header-bg: #ffffff;
-  --text-color: #333333;
-  --accent-color: #2563eb; /* Azul moderno */
+  --header-bg: #BFA2DB;
+  --text-color: #000000;
+  --accent-color: #241433; /* Azul moderno */
   --hover-bg: #f3f4f6;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow: 0 6px 6px -1px rgba(0, 0, 0, 0.1);
   --header-height: 80px;
 }
 
@@ -117,62 +117,121 @@
    MEDIA QUERIES (Para Móviles y Tablets)
    ========================================= */
 @media (max-width: 768px) {
+  /* Ajuste del Header contenedor */
   .header {
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
   }
 
+  /* Botón Hamburguesa */
   .menu-toggle {
-    display: block; /* Mostrar botón hamburguesa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1002;
+
+    color: #475569; /* Slate-600 */
   }
 
-  /* Menú lateral deslizante */
+  /* --- EL MENÚ LATERAL (Glassmorphism Móvil) --- */
   .nav-links {
     position: fixed;
     top: 0;
-    right: -100%; /* Escondido a la derecha */
-    width: 80%;
-    max-width: 300px;
+    right: -100%;
+    width: 75%; /* Un poco más ancho para que respire */
+    max-width: 350px;
     height: 100vh;
-    background: white;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    padding: 5rem 2rem 2rem;
+    
+    /* EFECTO ANGELICAL: Fondo blanco casi opaco + Blur */
+    background: var(--header-bg); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Safari */
+    
+    /* Sombra difusa y elegante */
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 1);
+    border-radius: 100px 0px 0px 100px;
+    padding: 6rem 1.5rem 2rem; /* Mucho padding arriba para separar del botón cerrar */
     flex-direction: column;
-    transition: right 0.3s ease-in-out;
-    overflow-y: auto; /* Scroll si el menú es muy alto */
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Animación ultra suave */
+    overflow-y: auto;
   }
 
   .nav-links.active {
-    right: 0; /* Deslizar hacia adentro */
+    right: 0;
   }
 
   .nav-links ul {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 1.5rem;
+    gap: 1rem; /* Espacio entre items principales */
+  }
+  
+  /* Líneas separadoras sutiles entre items principales */
+  .nav-links > ul > li {
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 0.5rem;
   }
 
-  /* Ajustes del Dropdown en móvil */
+    /* Enlaces Principales (Texto grande y legible) */
+    .nav-links a {
+      font-size: 1.15rem;
+      color: #334155;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      width: 100%;
+      display: flex;       
+      justify-content: flex-start; 
+      gap: 12px;            
+    }
+
+    .dropdown-trigger {
+      font-size: 1.15rem;
+      color: #334155;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between; 
+    }
+
+  /* --- EL DROPDOWN MÓVIL (Estilo Bloque Suave) --- */
   .dropdown-wrapper {
     width: 100%;
     padding: 0;
   }
 
-  .dropdown-trigger {
-    justify-content: space-between; /* Texto a la izq, flecha a la der */
-    width: 100%;
-    font-size: 1.1rem; /* Texto más grande en móvil */
-  }
-
   .dropdown-menu {
-    position: static; /* Ya no flota, empuja el contenido */
+    position: static;
     transform: none;
     box-shadow: none;
     border: none;
-    padding-left: 1rem; /* Indentación */
-    border-left: 2px solid var(--hover-bg);
-    margin-top: 0.5rem;
-    background: transparent;
+    
+    /* CAMBIO CLAVE: En vez de borde izquierdo, usamos un contenedor */
+    background-color: var(--header-bg); /* Slate-50 (Gris/Azul muy pálido) */
+    border-radius: 12px; /* Bordes redondeados */
+    padding: 0.8rem;
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Items dentro del Dropdown Móvil */
+  .dropdown-menu li a {
+    font-size: 0.95rem;
+    color: #64748b; /* Slate-500 (Un poco más suave que el título) */
+    padding: 0.6rem 0.8rem;
+    background-color: var(--header-bg); /* Tarjetas blancas dentro del fondo gris */
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03); /* Sombra micro */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Estado Active/Hover en móvil */
+  .dropdown-menu li a:active {
+    background-color: #f3e8ff; /* Toque lila al tocar */
+    color: #7e22ce;
   }
 }

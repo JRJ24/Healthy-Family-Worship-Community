@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaChevronDown } from 'react-icons/fa'; // Eliminé íconos no usados para limpiar
+import { FaBars, FaChevronDown, FaBookOpen, FaBookReader, FaPlaceOfWorship } from 'react-icons/fa';
+import { PiVirtualRealityBold } from "react-icons/pi";
 import logoIcon from "./../assets/cafsaLogo.webp";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Briefcase, Info, Map} from "lucide-react";
 import './../css/header.css';
 
 // 1. Definimos la interfaz para TypeScript
@@ -10,8 +11,10 @@ interface NavItem {
   title: string;
   section: string;
   path: string;
+  icon?: React.ReactNode;
   children?: NavItem[];
 }
+
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -23,45 +26,61 @@ const Header = () => {
 
   const buttonsHeader: NavItem[] = [
     {
-      title: "About CAFSA",
+      title: "",
       section: "aboutus",
       path: "/",
+      icon: <Home />,
     },
     {
-      title: "Services",
+      title: "SERVICES",
       section: "services", // Corregí "section" a "services" para que tenga sentido semántico
       path: "/",
       children: [
-        { title: "Saturday youth", section: "Saturdayyouth", path: "/" },
-        { title: "Sunday Morning", section: "sundaymorning", path: "/" },
-        { title: "Sunday Night", section: "sundaynight", path: "/" }
+        { title: "SATURDAY YOUTH", section: "Saturdayyouth", path: "/" },
+        { title: "SUNDAY MORNING", section: "sundaymorning", path: "/" },
+        { title: "SUNDAY NIGHT", section: "sundaynight", path: "/" }
       ]
     },
     {
-      title: "CAFSA ministry",
+      title: "CAFSA MINISTRY",
       section: "cafsaministry",
       path: "/",
       children: [
-        { title: "Book club", section: "bookclub", path: "/" },
-        { title: "Bible studies", section: "biblestudies", path: "/" },
-        { title: "Virtual Evangelism", section: "virtualevangelism", path: "/" },
-        { title: "Worship rehearsals", section: "worshiprehearsals", path: "/" }
+        { title: "Book club", section: "bookclub", path: "/", icon: <FaBookOpen /> },
+        { title: "Bible studies", section: "biblestudies", path: "/", icon: <FaBookReader /> },
+        { title: "Virtual Evangelism", section: "virtualevangelism", path: "/", icon: <PiVirtualRealityBold /> },
+        { title: "Worship rehearsals", section: "worshiprehearsals", path: "/", icon: <FaPlaceOfWorship /> }
       ]
     },
     {
-      title: "Location",
+      title: "LOCATION",
       section: "location",
-      path: "/"
+      path: "/",
+      icon: <Map />,
     }
   ];
 
 	useEffect(() => {
-    // 1. FORZAR LA APARICIÓN AL CARGAR
     controls.start({ y: 0, opacity: 1 }); 
 
     const handleScroll = () => {
       const currentScroll = window.scrollY;
-      // ... tu lógica de scroll existente ...
+
+       if (currentScroll > lastScroll && currentScroll > 80) {
+        // Bajando → ocultar navbar
+        controls.start({
+          y: -100,
+          opacity: 0,
+          transition: { duration: 0.4, ease: "easeOut" },
+        });
+      } else {
+        // Subiendo → mostrar navbar
+        controls.start({
+          y: 0,
+          opacity: 1,
+          transition: { duration: 0.4, ease: "easeOut" },
+        });
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -81,19 +100,14 @@ const Header = () => {
     <motion.header
       initial={{ opacity: 0, y: 0 }}
       animate={controls} // IMPORTANTE: Usar 'controls' aquí, no un objeto fijo
-      className="header" 
-      // Estilos sugeridos para que funcione el layout (puedes moverlos a tu CSS)
-      style={{ 
-        position: 'fixed', top: 0, width: '100%', zIndex: 50, 
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '1rem 2rem', background: 'white', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' 
-      }}
+      className="header " 
     >
+
       <div className="brand">
-        <img src={logoIcon} alt="CAFSA" className="logo"  />
+        <img src={logoIcon} alt="CAFSA" className="logo"/>
       </div>
       
-      {/* Botón Móvil */}
+      
       <button
         className="menu-toggle"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -106,8 +120,11 @@ const Header = () => {
       {/* Navegación */}
       <nav className={`nav-links ${menuOpen ? "active" : ""}`} >
         <ul style={{ listStyle: 'none', display: 'flex', gap: '20px', margin: 0, padding: 0, alignItems: 'center' }}>
-          {buttonsHeader.map((item, index) => (
-            <li key={index} style={{ position: 'relative' }}>
+          {buttonsHeader.map((item, index) => {
+
+
+            return (
+              <li key={index} style={{ position: 'relative' }}>
               {/* Si tiene hijos, renderizamos lógica de Dropdown */}
               {item.children ? (
                 <div 
@@ -119,6 +136,7 @@ const Header = () => {
                     onClick={() => toggleDropdown(item.title)}
                     style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '1rem', fontWeight: 500 }}
                   >
+                    {item.icon}
                     {item.title} 
                     <motion.span animate={{ rotate: activeDropdown === item.title ? 180 : 0 }}>
                       <FaChevronDown size={12}/>
@@ -129,31 +147,43 @@ const Header = () => {
                   <AnimatePresence>
                     {activeDropdown === item.title && (
                       <motion.ul
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="dropdown-menu"
-                        style={{
-                          position: menuOpen ? 'relative' : 'absolute', // Relativo en móvil, absoluto en desktop
-                          top: menuOpen ? 0 : '100%',
-                          left: 0,
-                          background: 'white',
-                          padding: '10px',
-                          boxShadow: menuOpen ? 'none' : '0 4px 12px rgba(0,0,0,0.1)',
-                          borderRadius: '8px',
-                          minWidth: '180px',
-                          listStyle: 'none'
-                        }}
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        // ESTILOS DEL CONTENEDOR (La caja blanca flotante)
+                        className="
+                          absolute top-full left-0 mt-2 
+                          min-w-[240px] p-2
+                          bg-white/90 backdrop-blur-xl 
+                          border border-purple-100/50 
+                          rounded-2xl 
+                          shadow-[0_8px_30px_rgb(0,0,0,0.12)]
+                          flex flex-col gap-1 z-50
+                        "
                       >
                         {item.children.map((child, cIndex) => (
-                          <li key={cIndex} style={{ margin: '8px 0' }}>
+                          <li key={cIndex} className="w-full">
                             <a 
                               href={`#${child.section}`} 
-                              className="smooth-btn"
-                              onClick={() => setMenuOpen(false)} // Cerrar menú al hacer click
-                              style={{ textDecoration: 'none', color: '#333', fontSize: '0.9rem' }}
+                              onClick={() => setMenuOpen(false)}
+                              // ESTILOS DE CADA ITEM (Alineación perfecta + Hover bonito)
+                              className="
+                                flex items-center gap-3 
+                                px-4 py-3 
+                                rounded-xl 
+                                text-slate-600 font-medium 
+                                hover:bg-purple-50 hover:text-purple-700 
+                                transition-all duration-200
+                              "
                             >
-                              {child.title}
+                              {/* Contenedor del icono para asegurar tamaño constante */}
+                              <span className="text-lg text-purple-400 flex-shrink-0">
+                                {child.icon}
+                              </span>
+                              
+                              {/* El texto */}
+                              <span>{child.title}</span>
                             </a>
                           </li>
                         ))}
@@ -169,11 +199,13 @@ const Header = () => {
                   onClick={() => setMenuOpen(false)}
                   style={{ textDecoration: 'none', color: '#333', fontWeight: 500 }}
                 >
+                  {item.icon}
                   {item.title}
                 </a>
               )}
             </li>
-          ))}
+            )
+          })}
         </ul>
       </nav>
     </motion.header>
