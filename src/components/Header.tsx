@@ -4,7 +4,7 @@ import { PiVirtualRealityBold } from "react-icons/pi";
 import logoIcon from "./../assets/cafsaLogo.webp";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, Briefcase, Info, Map} from "lucide-react";
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 import './../css/header.css';
 
 // 1. Definimos la interfaz para TypeScript
@@ -159,16 +159,18 @@ const Header = () => {
                   <AnimatePresence>
                     {activeDropdown === item.title && (
                       <motion.ul
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        transition={{ duration: 0.5 }}
+                        initial={{ opacity: 0, y: -9, scale: 0.95, filter: "blur(1px)" }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95, filter: "blur(1px)" }}
+                        transition={{ type: "spring", stiffiness: 200, damping: 25, mass: 0.5 }}
+                        className="dropdown-menu"
                       >
                         {item.children.map((child, cIndex) => (
                           <li key={cIndex} className="w-full">
                             <a 
                               href={`#${child.section}`} 
                               onClick={() => setMenuOpen(false)}
+                              className="dropdown-item"
                             >
                               {/* Contenedor del icono para asegurar tamaño constante */}
                               <span className="text-lg text-purple-400 flex-shrink-0">
