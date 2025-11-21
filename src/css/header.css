@@ -185,6 +185,7 @@
     flex-direction: column;
     transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Animación ultra suave */
     overflow-y: auto;
+    z-index: 50;
   }
 
   .nav-links.active {
@@ -265,5 +266,22 @@
   .dropdown-menu li a:active {
     background-color: #f3e8ff; /* Toque lila al tocar */
     color: #7e22ce;
+  }
+
+    /* --- OVERLAY DE FONDO (La capa oscura) --- */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 40; /* Debe ser menor que el z-index del menú (.nav-links tiene 50) */
+    
+    /* El color negro semitransparente */
+    background-color: rgba(0, 0, 0, 0.6); 
+    
+    /* El efecto de difuminado */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 }

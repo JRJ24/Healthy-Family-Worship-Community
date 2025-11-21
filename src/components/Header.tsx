@@ -4,6 +4,7 @@ import { PiVirtualRealityBold } from "react-icons/pi";
 import logoIcon from "./../assets/cafsaLogo.webp";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, Briefcase, Info, Map} from "lucide-react";
+import { createPortal } from 'react-dom';
 import './../css/header.css';
 
 // 1. Definimos la interfaz para TypeScript
@@ -117,8 +118,20 @@ const Header = () => {
         {menuOpen ? <X size={26} /> : <Menu size={26} />}
       </button>
 
+      <AnimatePresence>
+        { menuOpen && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+              className="menu-overlay"
+            />
+          )}
+      </AnimatePresence>
+
       {/* Navegación */}
-      <nav className={`nav-links ${menuOpen ? "active" : ""}`} >
+      <nav className={`nav-links ${menuOpen ? "active" : ""} `} >
         <ul className="flex items-center gap-5 list-none m-0 p-0">
           {buttonsHeader.map((item, index) => {
             return (
