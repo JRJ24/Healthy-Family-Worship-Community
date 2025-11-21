@@ -1,0 +1,21 @@
+html{
+  background: black;
+}
+
+/* En tu globals.css o módulo */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: blue;
+  width: 100%;
+  transform-origin: 0 50%;
+  animation: grow-progress auto linear;
+  animation-timeline: scroll(root); /* La magia ocurre aquí */
+}
+
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
