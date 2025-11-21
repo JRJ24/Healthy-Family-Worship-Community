@@ -119,13 +119,12 @@ const Header = () => {
 
       {/* Navegación */}
       <nav className={`nav-links ${menuOpen ? "active" : ""}`} >
-        <ul style={{ listStyle: 'none', display: 'flex', gap: '20px', margin: 0, padding: 0, alignItems: 'center' }}>
+        <ul className="flex items-center gap-5 list-none m-0 p-0">
           {buttonsHeader.map((item, index) => {
-
-
             return (
               <li key={index} style={{ position: 'relative' }}>
               {/* Si tiene hijos, renderizamos lógica de Dropdown */}
+
               {item.children ? (
                 <div 
                   className="dropdown-wrapper"
@@ -134,7 +133,7 @@ const Header = () => {
                 >
                   <button 
                     onClick={() => toggleDropdown(item.title)}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '1rem', fontWeight: 500 }}
+                    className="flex items-center gap-[5px] text-base font-medium bg-transparent border-none cursor-pointer"
                   >
                     {item.icon}
                     {item.title} 
@@ -150,32 +149,13 @@ const Header = () => {
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        // ESTILOS DEL CONTENEDOR (La caja blanca flotante)
-                        className="
-                          absolute top-full left-0 mt-2 
-                          min-w-[240px] p-2
-                          bg-white/90 backdrop-blur-xl 
-                          border border-purple-100/50 
-                          rounded-2xl 
-                          shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-                          flex flex-col gap-1 z-50
-                        "
+                        transition={{ duration: 0.5 }}
                       >
                         {item.children.map((child, cIndex) => (
                           <li key={cIndex} className="w-full">
                             <a 
                               href={`#${child.section}`} 
                               onClick={() => setMenuOpen(false)}
-                              // ESTILOS DE CADA ITEM (Alineación perfecta + Hover bonito)
-                              className="
-                                flex items-center gap-3 
-                                px-4 py-3 
-                                rounded-xl 
-                                text-slate-600 font-medium 
-                                hover:bg-purple-50 hover:text-purple-700 
-                                transition-all duration-200
-                              "
                             >
                               {/* Contenedor del icono para asegurar tamaño constante */}
                               <span className="text-lg text-purple-400 flex-shrink-0">

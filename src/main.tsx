@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-// import './index.css'
+import './index.css'
 // import 'hero-slider/dist/index.css'; // estilos del paquete
 
 import App from './App.tsx'
