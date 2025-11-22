@@ -12,15 +12,23 @@ const images = [
   "https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 ];
 
+const text = [
+  "title 1",
+  "title 2",
+  "title 3",
+  "title 4",
+  "title 5",
+  "title 6",
+]
+
 
 const HomePage = () => {
     return (
     <div className="min-h-screen">
       <Header/>
-
+      <CarrouselCAFSA imgs={images} texts={text} />
       {/*<div className={`${isMenuOpen ? "blur-sm pointer-events-none" : ""}`}>
       <HeroSliderBTS slides={slides} />
-      
       
 
       <AboutUs />

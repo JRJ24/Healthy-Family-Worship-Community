@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import './../css/carrousel.css';
 
 interface carrousel {
   imgs: string[];
-  texts: string[];
-  description: string[];
+  texts?: string[];
+  description?: string[];
 }
 
 const CarrouselCAFSA = ({ imgs, texts, description }: carrousel) => {

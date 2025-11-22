@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+
+/* Definimos el color de la nav para usarlo fácil (ajústalo si tienes el código exacto) */
+:root {
+  --nav-color: #C593D6; /* Color lila aproximado de tu imagen */
+  --nav-dark: #4A0B9E;  /* Tu morado oscuro original */
+}
+
+.carousel {
+  margin: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 50%;
+  overflow: hidden;
+  /* Eliminamos el degradado de fondo si hay imagen, o lo hacemos neutro */
+  background: #0F0C12; 
+  box-shadow: 0 0 20px #00000080;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.carousel:hover {
+  /* Eliminado el brillo rojo que causaba ruido visual */
+  box-shadow: 0 0 30px #000000a0; 
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* CAMBIO: Degradado negro neutro para limpiar el ruido visual */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.95; /* Aumenté un poco la opacidad para que la imagen luzca más */
+  transition: opacity 0.4s ease;
+}
+
+.carousel-text {
+  position: absolute;
+  bottom: 120px; /* Subido un poco para dar aire */
+  left: 50px;
+  z-index: 2;
+  text-align: left; /* Alineado a la izquierda se ve más moderno */
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  max-width: 80%;
+}
+
+.carousel-description {
+  position: absolute;
+  bottom: 70px;
+  left: 50px;
+  z-index: 2;
+  text-align: left;
+  font-family: "Oswald", sans-serif;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  max-width: 80%;
+}
+
+.carousel-text h2 {
+  font-size: 3.5rem; /* Un poco más grande para impacto */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff; /* CAMBIO: Blanco puro para limpieza visual */
+  margin: 0;
+}
+
+.carousel-description h3 {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  text-transform: none; /* Lowercase se ve raro a veces, mejor normal */
+  color: var(--nav-color); /* CAMBIO: Usa el color de la barra de navegación */
+  font-weight: 400;
+  margin: 0;
+}
+
+.slide_direction {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  z-index: 3;
+}
+
+.left,
+.right {
+  /* CAMBIO: Fondo transparente con borde para menos peso visual */
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.left:hover,
+.right:hover {
+  /* CAMBIO: Al hacer hover se ilumina con el color de la barra */
+  background: var(--nav-color); 
+  border-color: var(--nav-color);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(197, 147, 214, 0.4);
+}
+
+.indicator {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  gap: 12px;
+  z-index: 4; /* Asegurar que esté encima del overlay */
+}
+
+.dot {
+  background-color: rgba(255,255,255,0.3); /* Gris transparente */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dot:hover {
+  background-color: #fff;
+}
+
+.active {
+  background-color: var(--nav-color); /* CAMBIO: Coincide con la barra */
+  box-shadow: 0 0 10px var(--nav-color);
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .carousel-text h2 {
+    font-size: 2rem;
+  }
+  .carousel-description h3{
+    display: block; /* Mejor mostrarlo pero más pequeño */
+    font-size: 0.9rem;
+  }
+}
