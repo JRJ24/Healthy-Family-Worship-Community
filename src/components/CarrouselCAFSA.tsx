@@ -55,7 +55,7 @@ const CarrouselCAFSA = ({ imgs, texts, description }: carrousel) => {
           transition={{duration: 0.5}}
           className="textCarrousel"
         >
-          {texts ? texts[currentIndex] : "Welcome to Velvo"}
+          {texts ? texts[currentIndex] : "CAFSA"}
         </motion.h2>
       </div>
 

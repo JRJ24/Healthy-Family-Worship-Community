@@ -11,6 +11,14 @@ Se ha finalizado la implementación y rediseño de la barra de navegación (**He
 * **Tecnología:** Migración de estilos CSS inline a clases de **TailwindCSS** para mejor rendimiento y mantenimiento.
 * **Funcionalidad:** Dropdowns animados con `framer-motion` y navegación fluida.
 
+
+### ** 🎠 Carrusel Completado / Carrousel Completed**
+Se ha finalizado la implementacion y diseño del carrousel de la pagina CAFSA (**Carrousel**).
+* **🎨 Diseño UI/UX Refinado:** Estética minimalista que prioriza el contenido. Colores y contrastes ajustados para eliminar el "ruido visual" y mantener la coherencia con la identidad de marca.
+* **📱 100% Responsive:** Adaptabilidad fluida desde dispositivos móviles hasta pantallas de escritorio (Full-width & Full-height).
+* **✨ Animaciones Dinámicas:** Transiciones suaves de imágenes y textos orquestadas con **Framer Motion**.
+* **⚡ Funcionalidad:** Reproducción automática (Autoplay), navegación manual intuitiva e indicadores de estado.
+
 ---
 
 ## 🇪🇸 Sobre el Proyecto
