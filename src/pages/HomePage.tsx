@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from './../components/Header.tsx';
 import CarrouselCAFSA from './../components/CarrouselCAFSA.tsx';
 import Background from './../components/Background.tsx';
+import AboutUs from './../components/AboutUs.tsx';
 
 const images = [
   "https://images.pexels.com/photos/169647/pexels-photo-169647.jpeg?auto=compress&cs=tinysrgb&w=600",
@@ -28,7 +29,7 @@ const HomePage = () => {
       <Background bgVariant={"linear"}/>
       <Header/>
       <CarrouselCAFSA imgs={images} texts={text} />
-      <h1>Comunidad de Adoracion Familia Saludable</h1>
+      <AboutUs />
       {/*<div className={`${isMenuOpen ? "blur-sm pointer-events-none" : ""}`}>
       <HeroSliderBTS slides={slides} />
 

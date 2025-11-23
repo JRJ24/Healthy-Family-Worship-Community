@@ -3,13 +3,13 @@ import { FaBars, FaChevronDown, FaBookOpen, FaBookReader, FaPlaceOfWorship } fro
 import { PiVirtualRealityBold } from "react-icons/pi";
 import logoIcon from "./../assets/cafsaLogo.webp";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, Briefcase, Info, Map} from "lucide-react";
+import { Menu, X, Home, Map} from "lucide-react";
 // import { createPortal } from 'react-dom';
 import './../css/header.css';
 
 // 1. Definimos la interfaz para TypeScript
 interface NavItem {
-  title: string;
+  titulo: string;
   section: string;
   path: string;
   icon?: React.ReactNode;
@@ -27,34 +27,34 @@ const Header = () => {
 
   const buttonsHeader: NavItem[] = [
     {
-      title: "",
+      titulo: "",
       section: "aboutus",
       path: "/",
       icon: <Home />,
     },
     {
-      title: "SERVICES",
+      titulo: "SERVICIOS",
       section: "services", // Corregí "section" a "services" para que tenga sentido semántico
       path: "/",
       children: [
-        { title: "SATURDAY YOUTH", section: "Saturdayyouth", path: "/" },
-        { title: "SUNDAY MORNING", section: "sundaymorning", path: "/" },
-        { title: "SUNDAY NIGHT", section: "sundaynight", path: "/" }
+        { titulo: "SABADO JUVENILES", section: "Saturdayyouth", path: "/" },
+        { titulo: "SERVICIOS DOMINICALES", section: "sundaymorning", path: "/" },
+        { titulo: "DOMINGO NOCTURNO", section: "sundaynight", path: "/" }
       ]
     },
     {
-      title: "CAFSA MINISTRY",
+      titulo: "MINISTERIOS",
       section: "cafsaministry",
       path: "/",
       children: [
-        { title: "Book club", section: "bookclub", path: "/", icon: <FaBookOpen /> },
-        { title: "Bible studies", section: "biblestudies", path: "/", icon: <FaBookReader /> },
-        { title: "Virtual Evangelism", section: "virtualevangelism", path: "/", icon: <PiVirtualRealityBold /> },
-        { title: "Worship rehearsals", section: "worshiprehearsals", path: "/", icon: <FaPlaceOfWorship /> }
+        { titulo: "CLUB DE LECTURA", section: "bookclub", path: "/", icon: <FaBookOpen /> },
+        { titulo: "ESTUDIOS BIBLICOS", section: "biblestudies", path: "/", icon: <FaBookReader /> },
+        { titulo: "EVANGELISMO VIRTUAL", section: "virtualevangelism", path: "/", icon: <PiVirtualRealityBold /> },
+        { titulo: "ENSAYOS DE ADORACION", section: "worshiprehearsals", path: "/", icon: <FaPlaceOfWorship /> }
       ]
     },
     {
-      title: "LOCATION",
+      titulo: "UBICACION",
       section: "location",
       path: "/",
       icon: <Map />,
@@ -89,11 +89,11 @@ const Header = () => {
   }, [lastScroll, controls]); // Asegúrate de tener las dependencias bien
 
   // Función para alternar dropdowns (especialmente útil en móvil)
-  const toggleDropdown = (title: string) => {
-    if (activeDropdown === title) {
+  const toggleDropdown = (titulo: string) => {
+    if (activeDropdown === titulo) {
       setActiveDropdown(null);
     } else {
-      setActiveDropdown(title);
+      setActiveDropdown(titulo);
     }
   };
 
@@ -141,23 +141,23 @@ const Header = () => {
               {item.children ? (
                 <div 
                   className="dropdown-wrapper"
-                  onMouseEnter={() => !menuOpen && setActiveDropdown(item.title)} // Hover en Desktop
+                  onMouseEnter={() => !menuOpen && setActiveDropdown(item.titulo)} // Hover en Desktop
                   onMouseLeave={() => !menuOpen && setActiveDropdown(null)}
                 >
                   <button 
-                    onClick={() => toggleDropdown(item.title)}
+                    onClick={() => toggleDropdown(item.titulo)}
                     className="flex items-center gap-[5px] text-base font-medium bg-transparent border-none cursor-pointer"
                   >
                     {item.icon}
-                    {item.title} 
-                    <motion.span animate={{ rotate: activeDropdown === item.title ? 180 : 0 }}>
+                    {item.titulo} 
+                    <motion.span animate={{ rotate: activeDropdown === item.titulo ? 180 : 0 }}>
                       <FaChevronDown size={12}/>
                     </motion.span>
                   </button>
 
                   {/* Dropdown Menu */}
                   <AnimatePresence>
-                    {activeDropdown === item.title && (
+                    {activeDropdown === item.titulo && (
                       <motion.ul
                         initial={{ opacity: 0, y: -9, scale: 0.95, filter: "blur(1px)" }}
                         animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
@@ -178,7 +178,7 @@ const Header = () => {
                               </span>
                               
                               {/* El texto */}
-                              <span>{child.title}</span>
+                              <span>{child.titulo}</span>
                             </a>
                           </li>
                         ))}
@@ -195,7 +195,7 @@ const Header = () => {
                   style={{ textDecoration: 'none', color: '#333', fontWeight: 500 }}
                 >
                   {item.icon}
-                  {item.title}
+                  {item.titulo}
                 </a>
               )}
             </li>

@@ -1,0 +1,196 @@
+/* Variables para facilitar cambios */
+:root {
+  --color-deep-purple: #4A0B9E;
+  --color-lilac: #C593D6;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+/* Contenedor Principal */
+.about-section {
+  width: 100%;
+  padding: 80px 20px;
+  /* Espaciado arriba y abajo */
+  background-color: var(--color-white);
+  overflow: hidden;
+  /* Evita que cosas se salgan de la pantalla */
+  font-family: sans-serif;
+  /* O la fuente que uses en tu proyecto */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Centrado horizontal */
+}
+
+/* Grid Layout: 2 Columnas */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Mitad y mitad */
+  gap: 60px;
+  align-items: center;
+}
+
+/* --- Estilos del Texto (Izquierda) --- */
+.text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.subtitle {
+  color: var(--color-lilac);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.main-title {
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--color-black);
+  margin-bottom: 25px;
+  font-weight: 800;
+}
+
+.highlight {
+  display: block;
+  color: var(--color-deep-purple);
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  /* Gris oscuro para lectura */
+  margin-bottom: 35px;
+  text-align: justify;
+}
+
+/* Botón Estilizado */
+.cta-button {
+  background-color: var(--color-deep-purple);
+  color: var(--color-white);
+  padding: 15px 35px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 11, 158, 0.3);
+}
+
+.cta-button:hover {
+  background-color: #350675;
+  /* Un tono más oscuro al pasar el mouse */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(197, 147, 214, 0.6);
+}
+
+/* --- Estilos Visuales (Derecha) --- */
+.visual-content {
+  position: relative;
+  height: 450px;
+  /* Altura fija para contener los cuadros */
+  width: 100%;
+}
+
+/* Cuadro Morado Principal */
+.box-purple {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background: linear-gradient(135deg, var(--color-deep-purple), #2e0566);
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Centrado perfecto */
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-text {
+  color: rgba(255, 255, 255, 0.1);
+  /* Transparente sutil */
+  font-size: 4rem;
+  font-weight: 900;
+  user-select: none;
+}
+
+/* Cuadro Lila (Fondo decorativo) */
+.box-lilac {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background-color: var(--color-lilac);
+  border-radius: 20px;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transform: rotate(5deg);
+  /* Inclinación chula */
+  opacity: 0.8;
+}
+
+/* Cuadro Pequeño (Estadísticas) */
+.box-stats {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  background-color: var(--color-white);
+  border: 3px solid var(--color-black);
+  padding: 20px;
+  border-radius: 15px;
+  z-index: 3;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-deep-purple);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+/* --- Responsive (Celulares) --- */
+@media (max-width: 900px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+    /* Una sola columna */
+    gap: 40px;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .brand-text {
+    font-size: 3rem;
+  }
+
+  .visual-content {
+    height: 350px;
+    /* Un poco más pequeño en móvil */
+  }
+
+  .description {
+    text-align: left;
+  }
+}
