@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useEffect } from 'react';
 // import methodsHttp from './../../API/methodsHttp.ts';
 import type ISchedule from './../../types/schedules.ts';
 import { FaSun } from "react-icons/fa";
@@ -33,6 +33,20 @@ const AboutModal = ({ openModal, onClose }: aboutModalProps) => {
 	]
 	
 	if (!openModal) return null;
+
+	useEffect(() => {
+		if (openModal) {
+			// Bloqueamos tanto html como body
+			document.body.style.overflow = "hidden";
+			document.documentElement.style.overflow = "hidden";
+
+			return () => {
+				// Revertimos ambos
+				document.body.style.overflow = ""; // Mejor usar string vacío para quitar el estilo inline
+				document.documentElement.style.overflow = "";
+			};
+		}
+	}, [openModal]);
 
 	return (
 		// El overlay cubre toda la pantalla

@@ -19,6 +19,19 @@ Se ha finalizado la implementacion y diseño del carrousel de la pagina CAFSA (*
 * **✨ Animaciones Dinámicas:** Transiciones suaves de imágenes y textos orquestadas con **Framer Motion**.
 * **⚡ Funcionalidad:** Reproducción automática (Autoplay), navegación manual intuitiva e indicadores de estado.
 
+### **Sobre Nosotros completado / AboutUs Completed**
+Se ha finalizado el modulo "sobre nosotros" y la implementacion de un modal que te dice los horarios disponibles de los servicios
+* **📱 100% Responsive:** Adaptabilidad fluida y para nada brusca para dispositivos moviles. Layout adaptativo que utiliza Grid CSS (2 columnas en escritorio, 1 en móvil).
+* **Animaciones:** Entrada suave de elementos utilizando framer-motion.
+* **Estética Visual:** Uso de tarjetas decorativas, gradientes y la paleta de colores corporativa.
+* **Interacción:** Botón "Ver horarios" que activa el estado del modal.
+
+# Modal de Horarios 
+
+* **Overlay Inmersivo:** Fondo oscuro con efecto backdrop-blur (desenfoque) para centrar la atención.
+* **Posicionamiento:** Centrado absoluto (fixed) garantizado mediante CSS, independiente del scroll de la página.
+* **Animaciones de Entrada/Salida:** Efecto spring (rebote suave) al abrirse y cerrarse.
+* **Cierre Intuitivo:** Se puede cerrar mediante el botón dedicado o haciendo clic fuera del contenido (en el overlay).
 ---
 
 ## 🇪🇸 Sobre el Proyecto
