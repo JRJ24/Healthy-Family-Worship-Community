@@ -36,13 +36,11 @@ const AboutModal = ({ openModal, onClose }: aboutModalProps) => {
 
 	useEffect(() => {
 		if (openModal) {
-			// Bloqueamos tanto html como body
 			document.body.style.overflow = "hidden";
 			document.documentElement.style.overflow = "hidden";
 
 			return () => {
-				// Revertimos ambos
-				document.body.style.overflow = ""; // Mejor usar string vacío para quitar el estilo inline
+				document.body.style.overflow = ""; 
 				document.documentElement.style.overflow = "";
 			};
 		}

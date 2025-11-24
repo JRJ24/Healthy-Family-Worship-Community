@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 // import ProductsDetails from "./pages/ProductDetails";
 import NotFoundPage from "./pages/NotFoundPage";
+import './css/globals.css';
 
 const App = () => {
   return (

@@ -1,5 +1,6 @@
-html{
+html {
   background: black;
+  scroll-behavior: smooth;
 }
 
 /* En tu globals.css o módulo */
@@ -12,10 +13,16 @@ html{
   width: 100%;
   transform-origin: 0 50%;
   animation: grow-progress auto linear;
-  animation-timeline: scroll(root); /* La magia ocurre aquí */
+  animation-timeline: scroll(root);
+  /* La magia ocurre aquí */
 }
 
 @keyframes grow-progress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
