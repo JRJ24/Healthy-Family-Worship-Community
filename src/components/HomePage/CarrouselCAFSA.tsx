@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import './../css/carrousel.css';
+import './../../css/carrousel.css';
 
 interface carrousel {
   imgs: string[];
   texts?: string[];
-  description?: string[];
 }
 
 const CarrouselCAFSA = ({ imgs, texts, description }: carrousel) => {
@@ -49,26 +48,14 @@ const CarrouselCAFSA = ({ imgs, texts, description }: carrousel) => {
       <div className="carousel-text">
         <motion.h2
           key={currentIndex}
-          initial={{opacity: 0, y: 20}}
-          animate={{opacity: 1, y: 0}}
-          exit={{opacity: 0, y: -20}}
-          transition={{duration: 0.5}}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
           className="textCarrousel"
         >
           {texts ? texts[currentIndex] : "CAFSA"}
         </motion.h2>
-      </div>
-
-      <div className="carousel-description">
-        <motion.h3
-          key={currentIndex}
-          initial={{opacity: 0, y: 20}}
-          animate={{opacity: 1, y: 0}}
-          exit={{opacity: 0, y: -20}}
-          transition={{duration: 0.5}}
-        >
-          {description ? description[currentIndex] : "Description"}
-        </motion.h3>
       </div>
 
       <div className="slide_direction">

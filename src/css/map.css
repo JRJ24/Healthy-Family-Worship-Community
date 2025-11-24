@@ -1,11 +1,113 @@
-/*.map-container {
-	height: 400;
-	width: 600;
-	overflow: 'hidden';
-	border-radius: '12px';
-	background: '#f2f2f2';
-	box-shadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)';
-	display: 'flex';
-	align-items: 'center';
-	justify-content: 'center';
-}*/
+.location {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3rem;
+	align-items: center;
+	width: 100%;
+	max-width: 1200px;
+	margin: 4rem auto;
+	padding: 0 2rem;
+	box-sizing: border-box;
+}
+
+.location-card {
+	background: #ffffff;
+	padding: 2.5rem;
+	border-radius: 20px;
+	box-shadow: 0 10px 30px -10px rgba(74, 11, 158, 0.15);
+	border: 1px solid rgba(74, 11, 158, 0.05);
+}
+
+.location-info .titleMap {
+	font-size: 2.2rem;
+	margin-bottom: 1rem;
+	font-weight: 800;
+	color: #2d2d2d;
+	line-height: 1.1;
+}
+
+.location-info .titleMap span {
+	color: #6A0DAD;
+}
+
+.descriptionMap {
+	font-size: 1rem;
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 2rem;
+}
+
+.details-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	border-top: 1px solid #eee;
+	padding-top: 1.5rem;
+}
+
+.detail-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+.icon-box {
+	background: #F3E5F5;
+	color: #6A0DAD;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	font-size: 1.2rem;
+	flex-shrink: 0;
+}
+
+.detail-text h4 {
+	margin: 0;
+	font-size: 0.9rem;
+	color: #888;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-weight: 600;
+}
+
+.detail-text p {
+	margin: 0.2rem 0 0 0;
+	font-size: 1.1rem;
+	font-weight: 500;
+	color: #333;
+}
+
+.btn-location {
+	display: inline-block;
+	margin-top: 2rem;
+	background: #6A0DAD;
+	color: white;
+	padding: 0.8rem 2rem;
+	border-radius: 50px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
+}
+
+.btn-location:hover {
+	background: #500a85;
+	transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+	.location {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		margin: 2rem auto;
+	}
+
+	.location-card {
+		padding: 1.5rem;
+		order: 2;
+	}
+}

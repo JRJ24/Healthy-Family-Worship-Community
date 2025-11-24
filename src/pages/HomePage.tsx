@@ -1,12 +1,14 @@
 // import { useEffect, useState } from "react";
 import Header from './../components/Header.tsx';
-import CarrouselCAFSA from './../components/CarrouselCAFSA.tsx';
+import CarrouselCAFSA from './../components/HomePage/CarrouselCAFSA.tsx';
 import Background from './../components/Background.tsx';
-import AboutUs from './../components/AboutUs.tsx';
-import MapLocation from './../components/MapaLocation.tsx';
+import AboutUs from './../components/HomePage/AboutUs.tsx';
+import MapLocation from './../components/HomePage/MapaLocation.tsx';
+import Footer from './../components/Footer.tsx';
+import cafsaMain from './../../public/CAFSA.svg';
 
 const images = [
-  "https://images.pexels.com/photos/169647/pexels-photo-169647.jpeg?auto=compress&cs=tinysrgb&w=600",
+  cafsaMain,
   "https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/773471/pexels-photo-773471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -15,12 +17,12 @@ const images = [
 ];
 
 const text = [
-  "title 1",
-  "title 2",
-  "title 3",
-  "title 4",
-  "title 5",
-  "title 6",
+  "Comunidad de Adoracion Familia Saludable",
+  "Servicios Dominicales",
+  "Servicios juveniles",
+  "Estudios biblicos",
+  "Club de lectura",
+  "Ensayos Ministeriales",
 ]
 
 
@@ -32,6 +34,7 @@ const HomePage = () => {
       <CarrouselCAFSA imgs={images} texts={text} />
       <AboutUs />
       <MapLocation />
+      <Footer />
       {/*<div className={`${isMenuOpen ? "blur-sm pointer-events-none" : ""}`}>
       <HeroSliderBTS slides={slides} />
     

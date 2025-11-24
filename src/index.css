@@ -1,10 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-body, html {
+
+body,
+html {
   margin: 0 !important;
   padding: 0 !important;
   width: 100%;
-  overflow-x: hidden; /* Evita que aparezca barra de scroll horizontal */
+  overflow-x: hidden;
+  /* Evita que aparezca barra de scroll horizontal */
 }

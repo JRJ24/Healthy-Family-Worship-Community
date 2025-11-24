@@ -1,0 +1,86 @@
+/* Contenedor principal del footer */
+.footer {
+    background-color: #1a1a1a;
+    /* Fondo oscuro */
+    color: #ffffff;
+    padding: 40px 20px 20px;
+    font-family: 'Arial', sans-serif;
+    border-top: 4px solid #C593D6;
+    /* Un borde de color para resaltar (opcional) */
+}
+
+/* Contenedor interno para limitar el ancho */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    /* Permite que baje de línea en móviles */
+    gap: 20px;
+}
+
+/* Estilos para el Logo */
+.footer-logo {
+    max-width: 150px;
+    /* Ajusta según el tamaño real de tu imagen */
+    height: auto;
+    display: block;
+}
+
+/* Títulos de secciones */
+.links-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #C593D6;
+    /* Color de acento */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Contenedor de enlaces */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-link {
+    color: #cccccc;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.footer-link:hover {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* --- Media Query para Móviles --- */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin: 0 auto;
+        /* Centrar logo en móvil */
+    }
+
+    .social-links {
+        align-items: center;
+        /* Centrar enlaces en móvil */
+    }
+}

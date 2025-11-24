@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import '../css/aboutus.css';
-import AboutModal from './InformationModal/AboutModal.tsx';
+import '../../css/aboutus.css';
+import AboutModal from './../InformationModal/AboutModal.tsx';
 
 interface data {
   title: string;
