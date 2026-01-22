@@ -1,7 +1,5 @@
 import { useEffect, useRef } from "react";
-// @ts-ignore
 import Map, { type MapRef, Marker } from "react-map-gl/mapbox";
-// @ts-ignore
 import mapboxgl from "mapbox-gl";
 import { motion } from "framer-motion";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -9,8 +7,8 @@ import './../../css/map.css';
 
 const MapLocation = () => {
 	const mapRef = useRef<MapRef | null>(null);
-	const tokenMapBox = "pk.eyJ1IjoidmVsdm8iLCJhIjoiY21pYzBsOWQwMDhndjJtcTU0bDdxM3pqeiJ9.hnBMpOBS6MW1qUv2AyL0Ew";
-	const link = "https://www.google.com/maps/place/Cafsa.+Comunidad+de+Adoraci%C3%B3n+Familia+Saludable.+Pastores+Ezequiel+Lugo+y+Nizara+Morine+de+Lugo/@18.5106316,-69.8246392,14.7z/data=!4m6!3m5!1s0x8eaf877229f94d09:0x279c1c3bece8ad63!8m2!3d18.5140358!4d-69.8255477!16s%2Fg%2F11l1n6_kv0?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D"
+	const tokenMapBox = import.meta.env.VITE_API_kEY_MAPBOX;
+	const link = import.meta.env.VITE_LINK_DIRECTION;
 	useEffect(() => {
 		const t = setTimeout(() => {
 			mapRef.current?.getMap().resize();

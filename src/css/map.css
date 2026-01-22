@@ -11,7 +11,7 @@
 }
 
 .location-card {
-	background: #ffffff;
+	background: #ffffffd5;
 	padding: 2.5rem;
 	border-radius: 20px;
 	box-shadow: 0 10px 30px -10px rgba(74, 11, 158, 0.15);
@@ -24,6 +24,7 @@
 	font-weight: 800;
 	color: #2d2d2d;
 	line-height: 1.1;
+	text-transform: uppercase;
 }
 
 .location-info .titleMap span {

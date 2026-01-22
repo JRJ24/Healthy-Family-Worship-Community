@@ -1,20 +1,16 @@
 * {
   box-sizing: border-box;
-  /* Vital para que el padding no rompa el ancho */
 }
 
-/* --- Reset básico y variables --- */
 :root {
-  --header-bg: #BFA2DB;
-  --text-color: #000000;
-  --accent-color: #241433;
-  /* Azul moderno */
+  --header-bg: #120f16;
+  --text-color: #ffffff;
+  --accent-color: #bfa2db;
   --hover-bg: #f3f4f6;
   --shadow: 0 6px 6px -1px rgba(0, 0, 0, 0.1);
   --header-height: 80px;
 }
 
-/* --- Contenedor Principal --- */
 .header {
   position: fixed;
   top: 0;
@@ -22,24 +18,23 @@
   width: 100%;
   height: var(--header-height);
   background-color: var(--header-bg);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), 
+              0 0 60px rgba(191, 162, 219, 0.25),
+              0 0 100px rgba(191, 162, 219, 0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
   z-index: 1000;
-  border-bottom: 2px solid #241433;
 }
 
-/* --- Logo --- */
 .brand .logo {
-  height: 500px;
-  width: 100px;
+  height: 135px;
+  width: auto;
   object-fit: contain;
   cursor: pointer;
 }
 
-/* --- Navegación (Desktop) --- */
 .nav-links ul {
   list-style: none;
   display: flex;
@@ -49,9 +44,34 @@
   align-items: center;
 }
 
-/* Estilos generales para enlaces y botones del menú */
+@media (min-width: 769px) {
+  .nav-links {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+    overflow: visible !important;
+    transform: none !important;
+    right: auto !important;
+  }
+  
+  .nav-links.active {
+    right: auto !important;
+  }
+  
+  .menu-overlay {
+    display: none !important;
+  }
+}
+
 .nav-links a,
-.dropdown-trigger {
+.dropdown-trigger,
+.dropdown-wrapper > button {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
@@ -63,25 +83,22 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  /* Espacio entre texto e ícono */
 }
 
 .nav-links a:hover,
-.dropdown-trigger:hover {
+.dropdown-trigger:hover,
+.dropdown-wrapper > button:hover {
   color: var(--accent-color);
 }
 
-/* --- Dropdowns --- */
 @keyframes angelFloat {
   0% {
     opacity: 0;
-    /* Empieza un poquito más abajo (8px) y un pelín más pequeño (0.98) */
     transform: translateX(-50%) translateY(8px) scale(0.98);
   }
 
   100% {
     opacity: 1;
-    /* Termina en su sitio y tamaño original */
     transform: translateX(-50%) translateY(0) scale(1);
   }
 }
@@ -89,87 +106,66 @@
 .dropdown-wrapper {
   position: relative;
   padding: 10px 0;
-  /* Área de hover segura */
 }
 
 .dropdown-menu {
-  /* --- Posición --- */
   position: absolute;
   top: 100%;
-  /* Justo debajo del header */
   left: 50%;
-  /* Importante: transform inicial se maneja en la animación */
-
-  /* --- Estética Angelical --- */
-  background: var(--header-bg);
-  /* Blanco casi opaco */
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(12px);
-  /* Efecto vidrio borroso detrás */
+  border: 1px solid rgba(191, 162, 219, 0.3);
   min-width: 220px;
   border-radius: 16px;
-  /* Bordes muy suaves */
   padding: 0.5rem;
-
-  /* Sombra difusa (como una nube), no negra dura */
-  box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  /* Borde blanco sutil */
-
-  /* Flex */
+  box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.3), 
+              0 0 30px rgba(191, 162, 219, 0.15);
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  /* Poco espacio entre items */
-
-  /* --- La Animación Sutil --- */
-  /* cubic-bezier(0.2, 0.8, 0.2, 1) es la clave de la suavidad */
   animation: angelFloat 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   transform-origin: top center;
+  z-index: 100;
 }
 
 .dropdown-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   height: 20px;
-  /* Altura del puente invisible */
   background: transparent;
 }
 
-.dropdown-menu li a {
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a,
+.dropdown-item {
   display: flex;
-  /* Usamos flex para alinear icono/texto */
   align-items: center;
   gap: 10px;
-  /* Espacio entre icono y texto */
   padding: 0.6rem 1rem;
   border-radius: 10px;
-  /* Coincide con la redondez del menú */
   width: 100%;
   font-size: 0.9rem;
-  color: var(--text-color);
-  /* Gris suave (Slate-500) */
+  color: #ffffff;
   text-decoration: none;
-
-  /* Transición imperceptible pero agradable */
   transition: all 0.2s ease-out;
 }
 
-.dropdown-menu li a:hover {
-  background-color: #f8fafc;
-  /* Gris muy muy pálido (casi blanco) */
-  color: #7c3aed;
-  /* Tu color morado (Violet-600) */
+.dropdown-menu li a:hover,
+.dropdown-item:hover {
+  background-color: rgba(191, 162, 219, 0.2);
+  color: var(--accent-color);
   transform: translateX(4px);
-  /* Pequeño desplazamiento a la derecha */
 }
 
-/* --- Botón Móvil (Hamburger) --- */
 .menu-toggle {
   display: none;
-  /* Oculto en escritorio */
   background: none;
   border: none;
   color: var(--text-color);
@@ -177,53 +173,51 @@
   padding: 5px;
 }
 
-/* =========================================
-   MEDIA QUERIES (Para Móviles y Tablets)
-   ========================================= */
-@media (max-width: 768px) {
+.smooth-btn {
+  color: var(--text-color);
+  font-weight: 500;
+  text-decoration: none;
+}
 
-  /* Ajuste del Header contenedor */
+/* MEDIA QUERIES PARA MÓVIL */
+@media (max-width: 768px) {
   .header {
     padding: 0 1.2rem;
   }
 
-  /* Botón Hamburguesa */
   .menu-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1002;
-
-    color: #475569;
-    /* Slate-600 */
+    z-index: 1100;
+    color: #ffffff;
   }
 
-  /* --- EL MENÚ LATERAL (Glassmorphism Móvil) --- */
   .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
     width: 75%;
-    /* Un poco más ancho para que respire */
     max-width: 350px;
     height: 100vh;
-
-    /* EFECTO ANGELICAL: Fondo blanco casi opaco + Blur */
-    background: var(--header-bg);
+    background: #000000 !important;
+    background-color: #000000 !important;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    /* Safari */
-
-    /* Sombra difusa y elegante */
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 1);
-    border-radius: 100px 0px 0px 100px;
-    padding: 6rem 1.5rem 2rem;
-    /* Mucho padding arriba para separar del botón cerrar */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+    padding: 1.5rem;
+    padding-top: 5rem;
     flex-direction: column;
     transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    /* Animación ultra suave */
     overflow-y: auto;
-    z-index: 50;
+    z-index: 1000;
+  }
+
+  .nav-links a,
+  .dropdown-trigger,
+  .dropdown-wrapper > button {
+    color: #ffffff;
   }
 
   .nav-links.active {
@@ -234,99 +228,106 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 1rem;
-    /* Espacio entre items principales */
+    gap: 0;
   }
 
-  /* Líneas separadoras sutiles entre items principales */
-  .nav-links>ul>li {
+  .nav-links > ul > li {
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 0;
   }
 
-  /* Enlaces Principales (Texto grande y legible) */
+  .nav-links > ul > li:first-child {
+    padding-top: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links > ul > li:last-child {
+    border-bottom: none;
+  }
+
   .nav-links a {
-    font-size: 1.15rem;
-    color: #334155;
+    font-size: 1rem;
+    color: #ffffff;
     font-weight: 500;
-    padding: 0.5rem 0;
+    padding: 0.85rem 0;
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
   }
 
-  .dropdown-trigger {
-    font-size: 1.15rem;
-    color: #334155;
+  .nav-links a svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .dropdown-trigger,
+  .dropdown-wrapper > button {
+    font-size: 1rem;
+    color: #ffffff;
     font-weight: 500;
-    padding: 0.5rem 0;
+    padding: 0.85rem 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
-  /* --- EL DROPDOWN MÓVIL (Estilo Bloque Suave) --- */
   .dropdown-wrapper {
     width: 100%;
     padding: 0;
   }
 
   .dropdown-menu {
+    animation: none;
     position: static;
     transform: none;
     box-shadow: none;
-    border: none;
-
-    /* CAMBIO CLAVE: En vez de borde izquierdo, usamos un contenedor */
-    background-color: var(--header-bg);
-    /* Slate-50 (Gris/Azul muy pálido) */
-    border-radius: 12px;
-    /* Bordes redondeados */
-    padding: 0.8rem;
-    margin-top: 0.8rem;
+    border: 1px solid rgba(191, 162, 219, 0.15);
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-top: 0.75rem;
     display: flex;
     flex-direction: column;
+    gap: 0.4rem;
   }
 
-  /* Items dentro del Dropdown Móvil */
-  .dropdown-menu li a {
-    font-size: 0.95rem;
-    color: #64748b;
-    /* Slate-500 (Un poco más suave que el título) */
-    padding: 0.6rem 0.8rem;
-    background-color: var(--header-bg);
-    /* Tarjetas blancas dentro del fondo gris */
-    border-radius: 8px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-    /* Sombra micro */
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .dropdown-menu li a,
+  .dropdown-item {
+    font-size: 0.9rem;
+    color: #ffffff;
+    padding: 0.65rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    box-shadow: none;
   }
 
-  /* Estado Active/Hover en móvil */
-  .dropdown-menu li a:active {
-    background-color: #f3e8ff;
-    /* Toque lila al tocar */
-    color: #7e22ce;
+  .dropdown-menu li a:hover,
+  .dropdown-item:hover {
+    background-color: rgba(191, 162, 219, 0.2);
+    color: var(--accent-color);
+    transform: translateX(4px);
   }
 
-  /* --- OVERLAY DE FONDO (La capa oscura) --- */
+  .dropdown-menu li a:active,
+  .dropdown-item:active {
+    background-color: rgba(191, 162, 219, 0.3);
+    color: var(--accent-color);
+  }
+
   .menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 40;
-    /* Debe ser menor que el z-index del menú (.nav-links tiene 50) */
-
-    /* El color negro semitransparente */
+    z-index: 900;
     background-color: rgba(0, 0, 0, 0.6);
-
-    /* El efecto de difuminado */
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }

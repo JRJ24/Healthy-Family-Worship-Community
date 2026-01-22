@@ -36,7 +36,7 @@ const AboutUs = () => {
             <div className="text-content">
               <span className="subtitle">Sobre Nosotros</span>
               <h1 className="main-title">
-                {item.title} <span className="highlight">CAFSA</span>
+                {item.title} 
               </h1>
               <p className="description">
                 {item.body}

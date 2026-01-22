@@ -7,7 +7,7 @@ interface carrousel {
   texts?: string[];
 }
 
-const CarrouselCAFSA = ({ imgs, texts, description }: carrousel) => {
+const CarrouselCAFSA = ({ imgs, texts }: carrousel) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {

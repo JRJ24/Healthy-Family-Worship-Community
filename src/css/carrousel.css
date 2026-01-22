@@ -2,9 +2,9 @@
 
 /* Definimos el color de la nav para usarlo fácil (ajústalo si tienes el código exacto) */
 :root {
-  --nav-color: #C593D6;
+  --nav-color: #cf67f1e0;
   /* Color lila aproximado de tu imagen */
-  --nav-dark: #4A0B9E;
+  --nav-dark: #000000;
   /* Tu morado oscuro original */
 }
 
@@ -24,7 +24,6 @@
   background: #0F0C12;
   box-shadow: 0 0 20px #00000080;
   transition: all 0.3s ease-in-out;
-  border-radius: 0 0 10px 10px;
 }
 
 .carousel:hover {
@@ -114,11 +113,9 @@
 
 .left,
 .right {
-  /* CAMBIO: Fondo transparente con borde para menos peso visual */
   margin: 0;
   padding: 0;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   height: 50px;

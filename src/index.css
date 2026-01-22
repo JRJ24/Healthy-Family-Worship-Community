@@ -7,5 +7,7 @@ html {
   padding: 0 !important;
   width: 100%;
   overflow-x: hidden;
+  background-color: #141313;
+  color: #ffff;
   /* Evita que aparezca barra de scroll horizontal */
 }
