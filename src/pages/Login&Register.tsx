@@ -1,7 +1,7 @@
 
 import Login from "../components/Login&Register/Login"
 
-const LoginRegister = () => {
+const Logiin = () => {
   return (
     <div className="min-h-screen">
       <Login />
@@ -9,4 +9,4 @@ const LoginRegister = () => {
   );
 } 
 
-export default LoginRegister;
+export default Logiin;

@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginRegister from "./pages/Login&Register";
 import './css/globals.css';
+import Registerr from "./pages/Register";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginRegister />} />
+        <Route path="/register" element={<Registerr />} />
         {/* <Route path="/products/:id" element={<ProductsDetails />} />
         <Route path="/products" element={<Navigate to="/" replace />} /> */}
         <Route path="*" element={<NotFoundPage />} />

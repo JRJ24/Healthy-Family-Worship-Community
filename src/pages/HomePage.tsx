@@ -29,8 +29,11 @@ const HomePage = () => {
       <Background bgVariant={"linear"} />
       <Header />
       <CarrouselCAFSA imgs={images} texts={text} />
+      <div className='m-40'></div>
       <AboutUs />
+      <div className='m-40'></div>
       <MapLocation />
+      <div className='m-40'></div>
       <Footer />
       {/*<div className={`${isMenuOpen ? "blur-sm pointer-events-none" : ""}`}>
       <HeroSliderBTS slides={slides} />

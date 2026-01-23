@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   FaChevronDown,
-  FaBookOpen,
-  FaBookReader,
-  FaPlaceOfWorship,
-  FaUser,
+  // FaBookOpen,
+  // FaBookReader,
+  // FaPlaceOfWorship,
+  // FaUser,
 } from "react-icons/fa";
-import { PiVirtualRealityBold } from "react-icons/pi";
+// import { PiVirtualRealityBold } from "react-icons/pi";
 import logoIcon from "./../assets/cafsaLogo.webp";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, Map } from "lucide-react";
@@ -231,7 +231,7 @@ const Header = () => {
                   </div>
                 ) : (
                   <a
-                    href={`#${item.section}`}
+                    href={item.path == "/" ? `#${item.section}` : item.path}
                     className="smooth-btn"
                     onClick={() => setMenuOpen(false)}
                   >
