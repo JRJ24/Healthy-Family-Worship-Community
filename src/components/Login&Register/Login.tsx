@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-const Login = () => {
+
+interface LoginProps {
+  onLoginSuccess?: () => void;
+}
+
+
+const Login = ({onLoginSuccess}:LoginProps ) => {
   return (
     <>
       <section className="min-h-screen bg-black">
@@ -46,6 +52,7 @@ const Login = () => {
                 />
               </div>
               <button
+                onClick={onLoginSuccess}
                 type="submit"
                 className="w-full bg-white text-black font-semibold py-3 rounded hover:bg-purple-500 hover:text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:cursor-pointer"
               >

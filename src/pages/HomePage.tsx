@@ -5,7 +5,7 @@ import Background from './../components/Background.tsx';
 import AboutUs from './../components/HomePage/AboutUs.tsx';
 import MapLocation from './../components/HomePage/MapaLocation.tsx';
 import Footer from './../components/Footer.tsx';
-import cafsaMain from './../../public/CAFSA.svg';
+import cafsaMain from './../../public/wallpaper.jpeg';
 import cafsaBookClub from './../../public/BookClub.png';
 
 const images = [
