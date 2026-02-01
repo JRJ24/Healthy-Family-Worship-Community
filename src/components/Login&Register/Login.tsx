@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Link } from "react-router";
 
 
@@ -8,6 +8,19 @@ interface LoginProps {
 
 
 const Login = ({onLoginSuccess}:LoginProps ) => {
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const username = formData.get("username");
+    const password = formData.get("password");
+
+    if(onLoginSuccess){
+      onLoginSuccess();
+    }
+  }
+
   return (
     <>
       <section className="min-h-screen bg-black">
@@ -18,6 +31,7 @@ const Login = ({onLoginSuccess}:LoginProps ) => {
             </h1>
             <form
               action=""
+              onSubmit={handleSubmit}
               method="post"
               className="bg-zinc-900 p-8 rounded-lg border border-zinc-800 shadow-2xl"
             >
@@ -52,7 +66,6 @@ const Login = ({onLoginSuccess}:LoginProps ) => {
                 />
               </div>
               <button
-                onClick={onLoginSuccess}
                 type="submit"
                 className="w-full bg-white text-black font-semibold py-3 rounded hover:bg-purple-500 hover:text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:cursor-pointer"
               >

@@ -20,6 +20,7 @@ interface NavItem {
   path: string;
   icon?: React.ReactNode;
   children?: NavItem[];
+  isLoggined?: boolean;
 }
 
 const Header = () => {
@@ -34,6 +35,7 @@ const Header = () => {
       titulo: "SERVICIOS",
       section: "services",
       path: "/",
+      isLoggined: true,
       children: [
         { titulo: "SABADO JUVENILES", section: "Saturdayyouth", path: "/" },
         {
@@ -48,6 +50,7 @@ const Header = () => {
       titulo: "MINISTERIOS",
       section: "cafsaministry",
       path: "/",
+      isLoggined: true,
       children: [
         { titulo: "CLUB DE LECTURA", section: "bookclub", path: "/" },
         { titulo: "ESTUDIOS BIBLICOS", section: "biblestudies", path: "/" },
@@ -67,11 +70,13 @@ const Header = () => {
       titulo: "UBICACIÓN",
       section: "location",
       path: "/",
+      isLoggined: true,
     },
     {
       titulo: "INICIAR SESIÓN",
       section: "login",
       path: "/login",
+      isLoggined: false,
     },
   ];
 

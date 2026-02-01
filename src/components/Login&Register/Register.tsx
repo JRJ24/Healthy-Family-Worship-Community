@@ -1,17 +1,24 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { type IUser } from "../../types/IUser";
 
-const Login = () => {
+interface registerProps {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const Register = ({onSubmit} : registerProps) => {
   return (
     <>
       <section className="min-h-screen bg-black">
         <div className="min-h-screen flex flex-col items-center justify-center px-4">
           <div className="w-full max-w-md">
             <h1 className="text-white text-3xl font-bold text-center mb-8">
-              Registra tu cuenta en <span className="text-purple-500">CAFSA</span>
+              Registra tu cuenta en{" "}
+              <span className="text-purple-500">CAFSA</span>
             </h1>
             <form
               action=""
+              onSubmit={onSubmit}
               method="post"
               className="bg-zinc-900 p-8 rounded-lg border border-zinc-800 shadow-2xl"
             >
@@ -32,6 +39,21 @@ const Login = () => {
               </div>
               <div className="mb-6">
                 <label
+                  htmlFor="mail"
+                  className="block text-white text-sm font-medium mb-2"
+                >
+                  Correo Electronico
+                </label>
+                <input
+                  type="text"
+                  id="mail"
+                  name="mail"
+                  className="w-full bg-black text-white px-4 py-3 rounded border border-zinc-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
+                  placeholder="Introduce tu Nombre completo"
+                />
+              </div>
+              <div className="mb-6">
+                <label
                   htmlFor="username"
                   className="block text-white text-sm font-medium mb-2"
                 >
@@ -45,7 +67,7 @@ const Login = () => {
                   placeholder="Introduce tu usuario"
                 />
               </div>
-               <div className="mb-6">
+              <div className="mb-6">
                 <label
                   htmlFor="dateofbirth"
                   className="block text-white text-sm font-medium mb-2"
@@ -57,7 +79,6 @@ const Login = () => {
                   id="dateofbirth"
                   name="dateofbirth"
                   className="w-full bg-black text-white px-4 py-3 rounded border border-zinc-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
-
                 />
               </div>
               <div className="mb-8">
@@ -82,7 +103,6 @@ const Login = () => {
                 Registrarse
               </button>
             </form>
-
           </div>
         </div>
       </section>
@@ -90,4 +110,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
