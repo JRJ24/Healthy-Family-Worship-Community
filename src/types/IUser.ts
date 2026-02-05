@@ -5,3 +5,8 @@ export interface IUser {
   password: string,
   birthdayDate: string
 }
+
+export interface IRegisterSucess {
+  openModal: boolean;
+  onClose: () => void;
+}

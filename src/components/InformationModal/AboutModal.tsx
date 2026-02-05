@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect } from 'react';
 // import methodsHttp from './../../API/methodsHttp.ts';
 import type ISchedule from './../../types/schedules.ts';
