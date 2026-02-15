@@ -13,6 +13,8 @@ import { Menu, X, Home, Map } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import "./../css/header.css";
+import useLoginUser from "../context/useLogin";
+import { useAuthStore } from "../context/useAuthStore";
 
 interface NavItem {
   titulo: string;
@@ -24,6 +26,8 @@ interface NavItem {
 }
 
 const Header = () => {
+  const isLogging = useLoginUser((state) => state.isLogging);
+  const { user } = useAuthStore();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [lastScroll, setLastScroll] = useState<number>(0);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -67,8 +71,8 @@ const Header = () => {
       ],
     },
     {
-      titulo: "UBICACIÓN",
-      section: "location",
+      titulo: "Chat CAFSA",
+      section: "",
       path: "/",
       isLoggined: true,
     },
@@ -123,43 +127,18 @@ const Header = () => {
     } else {
       setActiveDropdown(titulo);
     }
-  };
+  }; 
 
-  return (
-    <motion.header
-      initial={{ opacity: 0, y: 0 }}
-      animate={controls}
-      className="header "
-    >
-      <div className="brand">
-        <img src={logoIcon} alt="CAFSA" className="logo" />
-      </div>
+  console.log(isLogging);
 
-      <button
-        className="menu-toggle"
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle Menu"
-        style={{ background: "none", border: "none", cursor: "pointer" }}
-      >
-        {menuOpen ? <X size={0} /> : <Menu size={26} />}
-      </button>
+  const renderNavItems = () => {
+    return (
+      <ul className="flex items-center gap-5 list-none m-0 p-0">
+          {buttonsHeader.filter((item) => {
+            const authMatch = item.isLoggined === isLogging;
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setMenuOpen(false)}
-            className="menu-overlay"
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Navegación */}
-      <nav className={`nav-links ${menuOpen ? "active" : ""} `}>
-        <ul className="flex items-center gap-5 list-none m-0 p-0">
-          {buttonsHeader.map((item, index) => {
+            return authMatch;
+          }).map((item, index) => {
             return (
               <li key={index} style={{ position: "relative" }}>
                 {item.children ? (
@@ -221,7 +200,7 @@ const Header = () => {
                                 onClick={() => setMenuOpen(false)}
                                 className="dropdown-item"
                               >
-                                <span className="text-lg text-purple-400 flex-shrink-0">
+                                <span className="text-lg text-purple-400 shrink-0">
                                   {child.icon}
                                 </span>
 
@@ -248,6 +227,43 @@ const Header = () => {
             );
           })}
         </ul>
+    )
+  }
+
+  return (
+    <motion.header
+      initial={{ opacity: 0, y: 0 }}
+      animate={controls}
+      className="header "
+    >
+      <div className="brand">
+        <img src={logoIcon} alt="CAFSA" className="logo" />
+      </div>
+
+      <button
+        className="menu-toggle"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle Menu"
+        style={{ background: "none", border: "none", cursor: "pointer" }}
+      >
+        {menuOpen ? <X size={0} /> : <Menu size={26} />}
+      </button>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMenuOpen(false)}
+            className="menu-overlay"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Navegación */}
+      <nav className={`nav-links ${menuOpen ? "active" : ""} `}>
+        {renderNavItems()}
       </nav>
     </motion.header>
   );

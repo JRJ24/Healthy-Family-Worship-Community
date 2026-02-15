@@ -2,24 +2,25 @@ import { useState, type FormEvent } from "react";
 import { Link } from "react-router";
 
 
-interface LoginProps {
-  onLoginSuccess?: () => void;
+interface ILoginProps {
+  onLoginSuccess?: (user:string, password:string) => void;
 }
 
 
-const Login = ({onLoginSuccess}:LoginProps ) => {
+const Login = ({onLoginSuccess}:ILoginProps ) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const username = formData.get("username");
-    const password = formData.get("password");
+    const user = String(formData.get("user"));
+    const password = String(formData.get("password"));
 
     if(onLoginSuccess){
-      onLoginSuccess();
+      onLoginSuccess(user, password);
     }
   }
+  
 
   return (
     <>
@@ -45,7 +46,7 @@ const Login = ({onLoginSuccess}:LoginProps ) => {
                 <input
                   type="text"
                   id="username"
-                  name="username"
+                  name="user"
                   className="w-full bg-black text-white px-4 py-3 rounded border border-zinc-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
                   placeholder="Introduce tu usuario"
                 />
